@@ -1,5 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ content}}
+<h1>Welcome to the Problem Shortlister</h1>
+<form id="welcomeForm" method="POST" action="/process">
+    <!-- Username Section -->
+    <div class="form-group">
+        <label for="usernames">Usernames:</label>
+        <div id="usernameContainer">
+            <div class="username-group">
+                <input type="text" name="usernames[]" placeholder="Enter username" required>
+                <button type="button" onclick="addUsernameField()">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Difficulty Section -->
+    <div class="form-group">
+        <label for="difficulty">Difficulty Range:</label>
+        <input type="number" name="lower_limit" placeholder="Lower Limit" min="0" required>
+        <input type="number" name="upper_limit" placeholder="Upper Limit" min="0" required>
+    </div>
+
+    <!-- Problem Tags Section -->
+    <div class="form-group">
+        <label for="tags">Problem Tags:</label>
+        <div class="drag-drop-container">
+            <div class="column">
+                <h3>Tags</h3>
+                <ul id="tagsList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <!-- Default Tags -->
+                    <li draggable="true" id="tag-1" ondragstart="drag(event)">Math</li>
+                    <li draggable="true" id="tag-2" ondragstart="drag(event)">Strings</li>
+                    <li draggable="true" id="tag-3" ondragstart="drag(event)">Graphs</li>
+                    <li draggable="true" id="tag-4" ondragstart="drag(event)">DP</li>
+                </ul>
+            </div>
+
+            <div class="column">
+                <h3>Include</h3>
+                <ul id="includeList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <li>
+                        <input type="text" id="includeTagInput" placeholder="Add tag" onkeypress="addTag(event, 'include')">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column">
+                <h3>Exclude</h3>
+                <ul id="excludeList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <li>
+                        <input type="text" id="excludeTagInput" placeholder="Add tag" onkeypress="addTag(event, 'exclude')">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Inputs to Store Selected Tags -->
+    <input type="hidden" id="includeTagsInput" name="include_tags" value="">
+    <input type="hidden" id="excludeTagsInput" name="exclude_tags" value="">
+
+    <button type="submit" onclick="prepareTags()">Submit</button>
+</form>
 {% endblock %}

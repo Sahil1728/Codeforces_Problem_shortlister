@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
@@ -10,5 +11,6 @@
     <main>
         {% block content %}{% endblock %}
     </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
