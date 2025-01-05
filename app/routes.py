@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, request
+from flask import Flask, render_template, Blueprint, request
 from app.services import process_request
 
 main = Blueprint('main', __name__)
@@ -37,3 +37,8 @@ def process():
     )
     # return "Data retreived successfully"
     return res
+
+app = Flask(__name__)
+app.register_blueprint(main)
+
+handler = app
