@@ -21,13 +21,10 @@ def process():
     import json
     included_list = json.loads(include_tags) if include_tags else []
     excluded_list = json.loads(exclude_tags) if exclude_tags else []
-
-    print(usernames)
-    print(lower_lim)
-    print(upper_lim)
-    print("Include Tags:", included_list)
-    print("Exclude Tags:", excluded_list)
-
+    while '' in included_list:
+        included_list.remove('')
+    while '' in excluded_list:
+        excluded_list.remove('')
     res = process_request(
         usernames,
         lower_lim,
