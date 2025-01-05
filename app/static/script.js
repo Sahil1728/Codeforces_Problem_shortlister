@@ -53,3 +53,35 @@ function prepareTags() {
     document.getElementById("includeTagsInput").value = JSON.stringify(includeTags);
     document.getElementById("excludeTagsInput").value = JSON.stringify(excludeTags);
 }
+
+// Function to add a new username field
+function addUsernameField() {
+    const container = document.getElementById("usernameContainer");
+
+    // Create a new username group
+    const newGroup = document.createElement("div");
+    newGroup.classList.add("username-group");
+
+    // Create the input field
+    const newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.name = "usernames[]";
+    newInput.placeholder = "Enter username";
+    newInput.required = true;
+
+    // Create the remove button
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.textContent = "-";
+    removeButton.classList.add("remove-username");
+    removeButton.onclick = function () {
+        container.removeChild(newGroup);
+    };
+
+    // Add input and button to the new group
+    newGroup.appendChild(newInput);
+    newGroup.appendChild(removeButton);
+
+    // Append the group to the container
+    container.appendChild(newGroup);
+}

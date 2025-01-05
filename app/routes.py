@@ -1,4 +1,5 @@
 from flask import render_template, Blueprint, request
+from app.services import process_request
 
 main = Blueprint('main', __name__)
 
@@ -27,4 +28,12 @@ def process():
     print("Include Tags:", included_list)
     print("Exclude Tags:", excluded_list)
 
-    return "Data retreived successfully"
+    res = process_request(
+        usernames,
+        lower_lim,
+        upper_lim,
+        included_list,
+        excluded_list
+    )
+    # return "Data retreived successfully"
+    return res

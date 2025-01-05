@@ -42,3 +42,23 @@
     margin-top: 10px;
     padding: 5px;
 }
+
+#usernameContainer {
+    margin-top: 10px;
+}
+
+.username-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.username-group input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.username-group button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
