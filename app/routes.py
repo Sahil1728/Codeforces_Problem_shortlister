@@ -14,17 +14,17 @@ def process():
     usernames = request.form.getlist('usernames[]')
     lower_lim = request.form.get('lower_limit')
     upper_lim = request.form.get('upper_limit')
-    include_tags = request.form.get('include_tags')  # JSON string
-    exclude_tags = request.form.get('exclude_tags')  # JSON string
+    include_tags = request.form.getlist('include_tags[]')  # JSON string
+    exclude_tags = request.form.getlist('exclude_tags[]')  # JSON string
+    include_tags = ",".join(include_tags) if include_tags else ""
 
-    # Convert JSON strings to Python lists
-    import json
-    included_list = json.loads(include_tags) if include_tags else []
-    excluded_list = json.loads(exclude_tags) if exclude_tags else []
-    while '' in included_list:
-        included_list.remove('')
-    while '' in excluded_list:
-        excluded_list.remove('')
+    # Handle empty string or '[]' input for tags and convert to list
+    included_list = include_tags.split(',') if include_tags else []
+    excluded_list = exclude_tags.split(',') if exclude_tags else []
+
+    # Remove any empty strings from the lists
+    included_list = [tag for tag in included_list if tag]
+    excluded_list = [tag for tag in excluded_list if tag]
     res = process_request(
         usernames,
         lower_lim,

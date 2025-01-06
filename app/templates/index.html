@@ -26,34 +26,89 @@
     <!-- Problem Tags Section -->
     <div class="form-group">
         <label for="tags">Problem Tags:</label>
-        <div class="drag-drop-container">
+        <div class="tag-selection-container">
             <div class="column">
-                <h3>Tags</h3>
-                <ul id="tagsList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <!-- Default Tags -->
-                    <li draggable="true" id="tag-1" ondragstart="drag(event)">Math</li>
-                    <li draggable="true" id="tag-2" ondragstart="drag(event)">Strings</li>
-                    <li draggable="true" id="tag-3" ondragstart="drag(event)">Graphs</li>
-                    <li draggable="true" id="tag-4" ondragstart="drag(event)">DP</li>
-                </ul>
+                <h3>Include Tags</h3>
+                <select id="includeTags" name="include_tags[]" multiple size="10" class="tag-select">
+                    <option value="2-sat">2-sat</option>
+                    <option value="binary search">binary search</option>
+                    <option value="bitmasks">bitmasks</option>
+                    <option value="brute force">brute force</option>
+                    <option value="chinese remainder theorem">chinese remainder theorem</option>
+                    <option value="combinatorics">combinatorics</option>
+                    <option value="constructive algorithms">constructive algorithms</option>
+                    <option value="data structures">data structures</option>
+                    <option value="dfs and similar">dfs and similar</option>
+                    <option value="divide and conquer">divide and conquer</option>
+                    <option value="dp">dp</option>
+                    <option value="dsu">dsu</option>
+                    <option value="expression parsing">expression parsing</option>
+                    <option value="fft">fft</option>
+                    <option value="flows">flows</option>
+                    <option value="games">games</option>
+                    <option value="geometry">geometry</option>
+                    <option value="graph matchings">graph matchings</option>
+                    <option value="graphs">graphs</option>
+                    <option value="greedy">greedy</option>
+                    <option value="hashing">hashing</option>
+                    <option value="implementation">implementation</option>
+                    <option value="interactive">interactive</option>
+                    <option value="math">math</option>
+                    <option value="matrices">matrices</option>
+                    <option value="meet-in-the-middle">meet-in-the-middle</option>
+                    <option value="number theory">number theory</option>
+                    <option value="probabilities">probabilities</option>
+                    <option value="schedules">schedules</option>
+                    <option value="shortest paths">shortest paths</option>
+                    <option value="sortings">sortings</option>
+                    <option value="string suffix structures">string suffix structures</option>
+                    <option value="strings">strings</option>
+                    <option value="ternary search">ternary search</option>
+                    <option value="trees">trees</option>
+                    <option value="two pointers">two pointers</option>
+                </select>
             </div>
 
             <div class="column">
-                <h3>Include</h3>
-                <ul id="includeList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <li>
-                        <input type="text" id="includeTagInput" placeholder="Add tag" onkeypress="addTag(event, 'include')">
-                    </li>
-                </ul>
-            </div>
-
-            <div class="column">
-                <h3>Exclude</h3>
-                <ul id="excludeList" class="tag-list" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <li>
-                        <input type="text" id="excludeTagInput" placeholder="Add tag" onkeypress="addTag(event, 'exclude')">
-                    </li>
-                </ul>
+                <h3>Exclude Tags</h3>
+                <select id="excludeTags" name="exclude_tags[]" multiple size="10" class="tag-select">
+                    <option value="2-sat">2-sat</option>
+                    <option value="binary search">binary search</option>
+                    <option value="bitmasks">bitmasks</option>
+                    <option value="brute force">brute force</option>
+                    <option value="chinese remainder theorem">chinese remainder theorem</option>
+                    <option value="combinatorics">combinatorics</option>
+                    <option value="constructive algorithms">constructive algorithms</option>
+                    <option value="data structures">data structures</option>
+                    <option value="dfs and similar">dfs and similar</option>
+                    <option value="divide and conquer">divide and conquer</option>
+                    <option value="dp">dp</option>
+                    <option value="dsu">dsu</option>
+                    <option value="expression parsing">expression parsing</option>
+                    <option value="fft">fft</option>
+                    <option value="flows">flows</option>
+                    <option value="games">games</option>
+                    <option value="geometry">geometry</option>
+                    <option value="graph matchings">graph matchings</option>
+                    <option value="graphs">graphs</option>
+                    <option value="greedy">greedy</option>
+                    <option value="hashing">hashing</option>
+                    <option value="implementation">implementation</option>
+                    <option value="interactive">interactive</option>
+                    <option value="math">math</option>
+                    <option value="matrices">matrices</option>
+                    <option value="meet-in-the-middle">meet-in-the-middle</option>
+                    <option value="number theory">number theory</option>
+                    <option value="probabilities">probabilities</option>
+                    <option value="schedules">schedules</option>
+                    <option value="shortest paths">shortest paths</option>
+                    <option value="sortings">sortings</option>
+                    <option value="string suffix structures">string suffix structures</option>
+                    <option value="strings">strings</option>
+                    <option value="ternary search">ternary search</option>
+                    <option value="trees">trees</option>
+                    <option value="two pointers">two pointers</option>
+                </select>
             </div>
         </div>
     </div>
@@ -64,4 +119,36 @@
 
     <button type="submit" onclick="prepareTags()">Submit</button>
 </form>
+
+<!-- Add these in the head section for CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Add jQuery and Select2 JS at the end before closing body tag -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#includeTags').select2();
+        $('#excludeTags').select2();
+    });
+
+    function prepareTags() {
+        var includeTags = [];
+        var excludeTags = [];
+
+        var includeSelect = document.getElementById('includeTags');
+        var excludeSelect = document.getElementById('excludeTags');
+
+        for (var i = 0; i < includeSelect.selectedOptions.length; i++) {
+            includeTags.push(includeSelect.selectedOptions[i].value);
+        }
+        for (var i = 0; i < excludeSelect.selectedOptions.length; i++) {
+            excludeTags.push(excludeSelect.selectedOptions[i].value);
+        }
+
+        document.getElementById('includeTagsInput').value = JSON.stringify(includeTags);
+        document.getElementById('excludeTagsInput').value = JSON.stringify(excludeTags);
+    }
+</script>
 {% endblock %}
