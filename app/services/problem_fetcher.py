@@ -35,9 +35,7 @@ def construct_info(stats, prob):
     return pos, return_dict
 
 def out_of_limit(prob, lower_lim, upper_lim):
-    points = int(prob.get('rating', False))
-    if not points:
-        return False
+    points = int(prob.get('rating', '0'))
     lower_lim = int(lower_lim)
     upper_lim = int(upper_lim)
     if points < lower_lim or points > upper_lim:
