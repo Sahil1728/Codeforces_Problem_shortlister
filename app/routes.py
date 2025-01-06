@@ -6,7 +6,7 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def home():
     heading = "Welcome to Codeforces Problem shortlister"
-    content = "This is a web app that helps you to shortlist problems from Codeforces based on your preferred topics and difficulty levels."
+    content = "This will help you to shortlist problems from Codeforces for mashup contests based on your preferred topics and difficulty levels."
     return render_template('index.html', heading = heading, content = content)
 
 @main.route('/process', methods=['POST'])
