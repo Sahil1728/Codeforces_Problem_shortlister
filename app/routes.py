@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request, jsonify
+from flask import Flask, render_template, Blueprint, request
 from app.services import process_request
 
 main = Blueprint('main', __name__)
