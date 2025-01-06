@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome to the Problem Shortlister</h1>
+<div class="header">
+    <p>{{ content }}</p>
+</div>
 <form id="welcomeForm" method="POST" action="/process">
     <!-- Username Section -->
     <div class="form-group">
