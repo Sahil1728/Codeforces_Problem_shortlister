@@ -32,8 +32,9 @@ def process():
         included_list,
         excluded_list
     )
-    # return "Data retreived successfully"
-    return res
+    for _, problem in res.items():
+        problem["url"] = f"https://codeforces.com/problemset/problem/{problem['contestID']}/{problem['number']}"
+    return render_template('problems.html', problems = res)
 
 app = Flask(__name__)
 app.register_blueprint(main)
